@@ -1,0 +1,22 @@
+import React, { useState, useContext, useEffect } from "react";
+import { FaStar } from "react-icons/fa6";
+import { toast } from "react-toastify";
+import { AuthContext } from "../../context/AuthContext";
+import BASE_URL from "../../utils/config";
+import { useNavigate } from "react-router-dom";
+
+const Booking = ({ price, title, reviewsArray, avgRating }) => {
+  const currentDate = new Date().toISOString().split("T")[0];
+  const navigate = useNavigate();
+  const { user } = useContext(AuthContext);
+  const [data, setData] = useState({
+    userId: user && user._id,
+    tourName: title,
+    fullName: "",
+    totalPrice: price,
+    phone: "",
+    maxGroupSize: 1,
+    bookAt: currentDate,
+    date: "",
+  });
+  const calculatedPrice = data.maxGroupSize * price;
