@@ -19,9 +19,8 @@ mongoose
   .then(() => console.log("DB connected"))
   .catch((err) => console.log(err));
 
-// Middleware for CORS and JSON parsing
+
 const allowedOrigins = [
-  
   "http://localhost:5173",
 ];
 app.use(
@@ -39,7 +38,7 @@ app.use(express.json());
 app.use(cookieParser());
 app.use(bodyParser.json());
 
-// Routes
+// Add other routes
 
 
 app.get("/", (req, res) => {
