@@ -1,0 +1,12 @@
+import React, { useState, useEffect } from "react";
+import { useLocation } from "react-router-dom";
+import TourCard from "../shared/TourCard";
+import SearchTours from "../components/Search/SearchTours";
+
+const SearchResultList = () => {
+  const location = useLocation();
+  const [data, setData] = useState([]);
+
+  useEffect(() => {
+    setData(location.state || []); // Update data whenever location.state changes
+  }, [location.state]);
