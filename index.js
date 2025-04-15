@@ -19,8 +19,9 @@ mongoose
   .then(() => console.log("DB connected"))
   .catch((err) => console.log(err));
 
-
+// Middleware for CORS and JSON parsing
 const allowedOrigins = [
+  "https://trips-travel.vercel.app",
   "http://localhost:5173",
 ];
 app.use(
@@ -38,8 +39,12 @@ app.use(express.json());
 app.use(cookieParser());
 app.use(bodyParser.json());
 
-// Add other routes
-
+// Routes
+app.use("/api/auth", authRoutes);
+app.use("/api/user", userRoutes);
+app.use("/api/tour", tourRoutes);
+app.use("/api/review", reviewRoutes);
+app.use("/api/booking", bookingRoutes);
 
 app.get("/", (req, res) => {
   res.send("Welcome to the Trips & Travels API!");
